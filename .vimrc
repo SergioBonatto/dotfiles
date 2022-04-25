@@ -1,10 +1,5 @@
 execute pathogen#infect()
 
-set foldmethod=expr
-set foldexpr=GetPotionFold(v:lnum)
-set foldminlines=0
-set foldopen=mark 
-
 function! s:NextNonBlankLine(lnum)
     let numlines = line('$')
     let current = a:lnum + 1
@@ -99,6 +94,8 @@ set textwidth=40
 set wrapmargin=0
 set cryptmethod=blowfish2
 
+
+set encoding=UTF-8
 
 let g:ctrlp_by_filename = 0
 :map <expr> <space> ":CtrlP ".getcwd()."<cr>"
