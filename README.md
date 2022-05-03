@@ -1,5 +1,11 @@
 # Dependency
 
+
+##Instalation 
+
+Clone this repo and run the script install.sh
+
+
 ## Pathogen
 
 ## Bundle: 
