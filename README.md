@@ -24,7 +24,7 @@ cd ~/.vim/bundle/
 - indentLine: git clone https://github.com/Yggdroot/indentLine.git  
 - syntastic: git clone --depth=1 https://github.com/vim-syntastic/syntastic.git            
 - vim-devicons: git clone https://github.com/ryanoasis/vim-devicons.git        
-- vim-kind: git clone https://github.com/mynomoto/vim-kind.git                       
+- vim-kind: git clone https://github.com/samueldurantes/vim-kind.git                       
 - vim-smoothie: git clone https://github.com/psliwka/vim-smoothie.git
 - matchit: git clone https://github.com/adelarsq/vim-matchit.git     
 - vim: git clone https://github.com/vim/vim.git                  
