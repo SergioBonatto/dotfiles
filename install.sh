@@ -1,7 +1,26 @@
 #!/bin/bash
 clear && \
+
+echo 
+"
+
+*******                                  **      **
+ **   **                                 **      **
+ **   **                                 **      **
+ **   **   ******   ** ****    *****   ******  ******    ******
+ ******   **    **  ***   **       **    **      **     **    **
+ **   **  **    **  **    **   ******    **      **     **    **
+ **   **  **    **  **    **  **    **   **      **     **    **
+ **   **  **    **  **    **  **    **   ** **   ** **  **    **
+*******    ******   **    **   *******    ****    ****   ******
+
+
+"
+
 echo "Instalando configurações para Kind no Vim" && \
 echo "Curado por Sergio Bonatto" && \
+
+sleep 60
 
 git clone https://github.com/vim/vim.git && \
 
@@ -10,12 +29,12 @@ curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim && \
 
 
 cd ~/.vim/bundle/ && \ 
-git clone git://github.com/jiangmiao/auto-pairs.git && \
+git clone https://github.com/jiangmiao/auto-pairs.git && \
 git clone https://github.com/preservim/nerdtree.git && \
 git clone https://github.com/vim-airline/vim-airline.git && \
 git clone https://github.com/tpope/vim-fireplace.git && \
 git clone https://github.com/sheerun/vim-polyglot.git && \
-git clone git://github.com/wakatime/vim-wakatime.git && \
+git clone https://github.com/wakatime/vim-wakatime.git && \
 git clone https://github.com/turbio/bracey.vim  && \
 git clone https://github.com/Xuyuanp/nerdtree-git-plugin.git && \
 git clone https://github.com/vim-airline/vim-airline-themes && \
@@ -36,6 +55,9 @@ git clone https://github.com/junegunn/vim-easy-align.git && \
 git clone https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git && \
 git clone https://github.com/honza/vim-snippets.git && \
 
-echo "instalação finalizada" && sleep 30
 clear
+
+echo "instalação finalizada"
+
+
 
