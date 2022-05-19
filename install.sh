@@ -54,6 +54,7 @@ git clone https://github.com/adelarsq/vim-matchit.git && \
 git clone https://github.com/junegunn/vim-easy-align.git && \
 git clone https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git && \
 git clone https://github.com/honza/vim-snippets.git && \
+git clone https://github.com/arthurxavierx/vim-unicoder.git && \
 
 clear
 
