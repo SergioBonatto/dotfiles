@@ -69,7 +69,7 @@ set nolisp
 set tabstop=2                            
 set expandtab                            
 set backspace=indent,eol,start           
-set autoindent                           
+" set autoindent
 set number                               
 set shiftwidth=2                         
 set shiftround                           
@@ -450,7 +450,7 @@ au BufRead,BufNewFile *.kind set filetype=kind
 :nnoremap <leader>s zc
 :nnoremap <leader>a zC
 
-
+let g:rainbow_active = 1
 
 :set comments+=:--
 
@@ -463,6 +463,7 @@ set formatoptions=cql
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 set rtp+=~/.vim/bundle/nerdtree
 
+" ===== CLONE NERDTREE ====
 
 function! s:CloseIfOnlyNerdTreeLeft()
   if exists("t:NERDTreeBufName")
@@ -474,13 +475,10 @@ function! s:CloseIfOnlyNerdTreeLeft()
   endif
 endfunction
 
-
-
+" ===== KIND SYNTAX ======
 au BufRead,BufNewFile *.kind set filetype=kind
 
-
-
-
+" ===== TAELIN FUNCTION =====
 function! SetupCtrlP()
   if exists("g:loaded_ctrlp") && g:loaded_ctrlp
     augroup CtrlPExtension
@@ -526,12 +524,81 @@ augroup Binary
   au BufWritePost *.wasm set nomod | endif
 augroup END
 
-
-" packadd! dracula
-colorscheme dracula 
+" ===== COLORSCHEME =====
+colorscheme one
 syntax enable
+set background=dark
+let g:lightline = { 'colorscheme': 'one' }
+let g:airline_theme = "one"
+
+"Credit joshdick
+if (empty($TMUX))
+  if (has("nvim"))
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+" Italics for my favorite color scheme
+let g:one_allow_italics = 1 
 
 
+" ========== NERDCOMMENTS  ==========
+"
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not
+let g:NERDToggleCheckAllLines = 1
+
+" Add your own custom formats or override the defaults
+
+let g:NERDCustomDelimiters = { 'c': { 'left':'//' }}
+let g:NERDCustomDelimiters = { 'hvm': { 'left':'//' }}
+let g:NERDCustomDelimiters = { 'HVM': { 'left':'//' }}
+let g:NERDCustomDelimiters = { 'default': { 'left':'//' }}
+"========= Finish NerdComments =========
+
+
+" always split windows vertically
+set splitright
+set diffopt+=vertical
+silent! set splitvertical
+if v:errmsg != ''
+  cabbrev split vert split
+  cabbrev hsplit split
+  cabbrev help vert help
+  noremap <C-w>] :vert botright wincmd ]<CR>
+  noremap <C-w><C-]> :vert botright wincmd ]<CR>
+else
+  cabbrev hsplit hor split
+endif
+
+" indent line
+let g:indentLine_setColors = 0
+let g:indentLine_concealcursor = 'inc'
+let g:indentLine_conceallevel = 2
+let g:indentLine_char = '┆'
+
+
+" finish split config ==========================
 
 let maplocalleader = "\\"
 let g:agda_extraincpaths = ["/Users/v/vic/dev/agda"]
