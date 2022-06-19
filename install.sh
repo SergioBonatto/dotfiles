@@ -55,6 +55,12 @@ git clone https://github.com/junegunn/vim-easy-align.git && \
 git clone https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git && \
 git clone https://github.com/honza/vim-snippets.git && \
 git clone https://github.com/arthurxavierx/vim-unicoder.git && \
+git clone https://github.com/preservim/nerdcommenter.git && \
+git clone https://github.com/chrisbra/Colorizer.git && \
+git clone https://github.com/drewtempelmeyer/palenight.vim.git && \
+git clone https://github.com/gko/vim-coloresque.git && \
+git clone https://github.com/rakr/vim-one.git && \
+
 
 clear
 
