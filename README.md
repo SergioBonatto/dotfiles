@@ -1,7 +1,7 @@
 # Dependency
 
 
-##Instalation 
+## Instalation 
 
 Clone this repo and run the script install.sh
 
@@ -37,7 +37,12 @@ cd ~/.vim/bundle/
 - vim-easy-align: git clone https://github.com/junegunn/vim-easy-align.git      
 - vim-nerdtree-syntax-highlight: git clone https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git  
 - vim-snippets: git clone https://github.com/honza/vim-snippets.git
-
+- nerdcommenter: git clone https://github.com/preservim/nerdcommenter.git  
+- colorizer: git clone https://github.com/chrisbra/Colorizer.git
+- vim-unicoder: git clone https://github.com/arthurxavierx/vim-unicoder.git
+- palenight.vim: git clone https://github.com/drewtempelmeyer/palenight.vim.git 
+- vim-coloresque: git clone https://github.com/gko/vim-coloresque.git
+- vim-one: git clone https://github.com/rakr/vim-one.git
 
 ## Syntax
 - vim-kind
