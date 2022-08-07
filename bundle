@@ -1,0 +1,13 @@
+auto-pairs           sparkup               vim-kind
+ayu-vim              syntastic             vim-matchit
+bracey.vim           vim-airline           vim-nerdtree-syntax-highlight
+Colorizer            vim-airline-themes    vim-one
+emmet-vim            vim_codex             vim-polyglot
+gruvbox-material     vim-coloresque        vim-rainbow
+indentLine           vim-commentary        vim-sleepwalker-powerline
+nerdcommenter        vim-devicons          vim-smoothie
+nerdtree             vim-easy-align        vim-snippets
+nerdtree-git-plugin  vim-fireplace         vim-todo-highlight
+palenight.vim        vim-fugitive          vim-unicoder
+powerline            vim-github-dashboard  vim-wakatime
+sensible             vim-hexokinase
