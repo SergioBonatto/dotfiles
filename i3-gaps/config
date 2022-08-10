@@ -12,11 +12,8 @@
 #                                              #
 ################################################
 
-##### start terminal ######
-# exec --no-startup-id terminal -e 'r'
-
-##### i3-gaps ##############
-for_window [class=".*"] border pixel 2 
+#### i3-gaps ##############
+for_window [class=".*"] border pixel 1 
 gaps inner 10
 gaps outer 1
 gaps horizontal 2
@@ -26,7 +23,7 @@ smart_borders on
 smart_borders no_gaps
 border_radius 3
 
-client.focused          #21242b #285577 #ffffff #9653ed   #57595e
+client.focused          #282828 #282828 #ffffff #9653ed   #282828
 
 
 # This is our mod Key. Currently it is set to the Windows Key.
@@ -37,10 +34,6 @@ set $mod Mod4
 # Font for window titles. Will also be used by the bar.
 font pango:monospace 15
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
 # start a terminal. We use kitty.
 bindsym $mod+Return exec i3-sensible-terminal
 
@@ -50,43 +43,76 @@ bindsym $mod+q kill
 
 
 ## Minecraft
-bindsym $mod+m exec $HOME/Minecraft/start.sh
+bindsym $mod+m exec /media/Arquivos/Minecraft_Linux/Minecraft_1.19/start.sh
 
+## Whatsapp
+bindsym $mod+w exec whatsapp
 
 ## Discord
-bindsym $mod+c exec $HOME/Discord/Discord
+bindsym $mod+c exec discord
 
 # Google
-bindsym $mod+g exec $HOME/google-chrome/google-chrome-stable.sh
+bindsym $mod+g exec chromium
+
 
 # Brilho
 bindsym F11 exec xbacklight -dec 5
 bindsym F12 exec xbacklight -inc 5
- 
+
+# redshift
+bindsym F9 exec blugon --setcurrent="+600"    # for more blue
+bindsym F10 exec blugon --setcurrent="-600"    # for more red
+
+#Unmute
+bindsym F1 exec amixer set "Headphone" unmute 
+
+# set floating by default
+# for_window [class="[.]*"] resize set 940 680
+for_window [class="[.]*"] floating enable
+
+# Floating window size
+floating_minimum_size 700 x 440
+floating_maximum_size 920 x 680
+
+# Orientation for new workspace
+default_orientation auto
+
+# Layout for new containers
+workspace_layout default
+
+# Border style
+new_window 1pixel
+new_float 1pixel
+hide_edge_borders vertical
 
 # start dmenu (a program launcher).
-# bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+n exec --no-startup-id menu_network
+bindsym $mod+p exec --no-startup-id ~/.config/rofi/bin/menu_powermenu
+
+bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # You have 2 options to launch rofi:
 # This mode search for .desktop files in /usr/share/applications.
 # This is the recommended mode. It searches for the programs as
 # defined in .desktop file, with their description, and corresponding
 # icons
-bindsym $mod+d exec --no-startup-id rofi -show drun -theme custom-nord # -icon-theme "Tela-circle" -show-icons
+bindsym $mod+d exec --no-startup-id rofi -show drun 
+#-theme custom-nord # -icon-theme "Tela-circle" -show-icons
 
 # The other mode search for applications in /usr/bin or /usr/sbin.
 # This should only be used if a program lacks a .desktop file.
-bindsym $mod+Shift+d exec --no-startup-id rofi -show run -theme custom-nord
+# bindsym $mod+Shift+d exec --no-startup-id rofi -show run
 
 # Launch Polybar. Take a look at ~/.confi/polybar/config to
 # configure the bar.
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
+# bash ~/.config/polybar/launch.sh --hack
 # Display Wallpaper, always.
 exec_always --no-startup-id killall back4.sh
 #exec_always --no-startup-id $HOME/back4.sh 0.03 Downloads/cityange.gif
-exec_always --no-startup-id feh --bg-fill /usr/share/backgrounds/i3/wallpaper.png
 
+# exec_always --no-startup-id feh --bg-fill /usr/share/backgrounds/i3/wallpaper.jpg
+exec_always --no-startup-id feh --bg-fill /usr/share/backgrounds/i3/wallpaper3.png
 # BLUR SCRIPT
 # exec --no-startup-id ~/.scripts/blurme/blurme &
 
@@ -94,7 +120,7 @@ exec_always --no-startup-id feh --bg-fill /usr/share/backgrounds/i3/wallpaper.pn
 gaps inner 4
 
 #Compositor. This helps in transparency and fading.
-exec_always picom -f
+exec_always picom -b --experimental-backends
 
 # Lock Screen This will yield a black lock screen, which
 # can be customized to your liking.
@@ -238,7 +264,7 @@ for_window [class="firefox"] move to workspace $ws2
 # defined keybinding, on a certain workspace, without
 # touching program launcher. Assign Programs to respective
 # workspaces.
-bindsym $mod+b workspace 2; exec firefox
+bindsym $mod+f workspace 2; exec firefox
 
 # Printscreen
 bindsym Print exec --no-startup-id xfce4-screenshooter
@@ -250,3 +276,29 @@ bindsym Print exec --no-startup-id xfce4-screenshooter
 #HDMI-X is display used in Desktop connected to monitor with HDMI Cable.
 #VGA-X is display used in Desktop connected to monitor with VGA Cable.
 exec --no-startup-id xrandr --output HDMI-2 --right-of HDMI-1 --auto
+
+# bar {
+#   position top
+#   workspace_buttons yes
+#   font pango: Inconsolata for Powerline 10
+#   tray_output none
+#
+#   i3bar_command i3bar -t
+#   colors{
+#       statusline #ffc88a
+#       # background #000000
+#       background  #00000000
+#
+#       active_workspace 		#ca480e #ca480e #ffc88a
+#       inactive_workspace 	#00262423 #00262423 #ffc88a
+#       focused_workspace   #00262423 #00262423 #f8f4cd
+#
+#     }
+#
+#   # i3bar_command i3bar  --transparency
+#
+#   status_command ~/.config/i3/bumblebee-status/bumblebee-status \
+#     -m datetime spotify weather amixer -a cpu -a memory -a battery -m system \
+#     -p root.path=/  datetime.format="%d %b %Y, %a %H:%M" memory.format="{percent:05.02f}%"  \
+#     -t gruvbox-powerline
+#   }
