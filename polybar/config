@@ -18,23 +18,25 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
+background = #002c231c
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #20232a
-secondary = #a2de2a
-alert = #bd2c40
+foreground = #797D80  
+foreground-alt = #C7CDD1
+primary = #C7CDD1
+secondary = #616466
+alert = #ffffff
 
 [bar/alg-example]
-monitor = ${env:MONITOR:HDMI-1}
+;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 27
+height = 14
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 6.0
-fixed-center = false
+fixed-center = true
+
+enable-ipc = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -51,14 +53,24 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+# font-0 = FiraCode Nerd Font Mono:style=Medium:size=11;2
+# font-1 = FiraCode Nerd Font Mono:style=Medium:size=15;3
+# font-2 = FiraCode Nerd Font Mono:style=Medium:size=20;4
+# font-3 = FiraCode Nerd Font Mono:style=Medium:size=30;5
+#
 
-modules-left = bspwm i3 xwindow
-modules-center = mpd
+# font-0 = fixed:pixelsize=8;2
+font-0 = FiraCode Nerd Font Mono:style=Medium:size=10;2
+font-1 = Font Awesome 5 Free:size=8;1
+# font-1 = unifont:fontformat=truetype:size=8:antialias=true;0
+font-2 = siji:pixelsize=9;2
+font-4 = Iconsolata Font:style=Medium:size=8;2
+font-5 = Weather Icons:size=8;2
+
+modules-left =  i3 
+modules-center = sep  date sep weather backlight
 ;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
-modules-right = alsa backlight xkeyboard memory cpu temperature battery eth date powermenu
+modules-right = spotify previous playpause next  alsa memory cpu battery powermenu
 
 tray-position = right
 tray-padding = 2
@@ -88,15 +100,15 @@ blacklist-0 = num lock
 
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+;format-prefix-underline = ${colors.secondary}
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
+;label-layout-underline = ${colors.secondary}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+;label-indicator-underline = ${colors.secondary}
 
 [module/filesystem]
 type = internal/fs
@@ -143,11 +155,13 @@ label-mode-padding = 2
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
-; focused = Active workspace on focused monitor
+ focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+# label-focused-background = ${colors.background-alt}
+# label-focused-underline= ${colors.primary}
 label-focused-padding = 2
+label-focused-foreground = ${colors.foreground-alt}
+
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
@@ -227,15 +241,15 @@ enable-scroll = true
 ;   <label> (default)
 ;   <ramp>
 ;   <bar>
-format = <label>
-label = BL: %percentage%%
+format = <ramp>
+; label = BL: %percentage%%
 
 ; Only applies if <ramp> is used
-;ramp-0 = 🌕
-;ramp-1 = 🌔
-;ramp-2 = 🌓
-;ramp-3 = 🌒
-;ramp-4 = 🌑
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
 
 ; Only applies if <bar> is used
 ;bar-width = 10
@@ -254,7 +268,7 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
+;format-underline = #f90000
 label = %percentage:2%%
 
 [module/memory]
@@ -262,7 +276,7 @@ type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+;format-underline = #4bffdc
 label = %percentage_used%%
 
 [module/wlan]
@@ -271,7 +285,7 @@ interface = wlp2s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
+;format-connected-underline = #9f78e1
 label-connected = %essid%
 
 format-disconnected =
@@ -292,7 +306,7 @@ type = internal/network
 interface = enp3s0
 interval = 3.0
 
-format-connected-underline = #55aa55
+;format-connected-underline = #55aa55
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
@@ -315,7 +329,7 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+;format-underline = #0a6cf5
 
 label = %date% %time%
 
@@ -330,13 +344,21 @@ label-muted = 🔇 muted
 label-muted-foreground = #666
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
+bar-volume-foreground-0 = #689d6a
+bar-volume-foreground-1 = #8ec07c
+bar-volume-foreground-2 = #b8bb26
+bar-volume-foreground-3 = #b8bb26
+bar-volume-foreground-4 = #d79921
+bar-volume-foreground-5 = #d79921
+bar-volume-foreground-6 = #fb4934
+
+# bar-volume-foreground-0 = #55aa55
+# bar-volume-foreground-1 = #55aa55
+# bar-volume-foreground-2 = #55aa55
+# bar-volume-foreground-3 = #55aa55
+# bar-volume-foreground-4 = #55aa55
+# bar-volume-foreground-5 = #f5a70a
+# bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
@@ -358,19 +380,20 @@ format-muted-foreground = ${colors.foreground-alt}
 label-muted = sound muted
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
+bar-volume-foreground-0 = #3A3C3D
+bar-volume-foreground-1 = #444647
+bar-volume-foreground-2 = #616466
+bar-volume-foreground-3 = #83878A
+bar-volume-foreground-4 = #94989C
+bar-volume-foreground-5 = #AAAFB3
+bar-volume-foreground-6 = #ffffff
+
+bar-volume-gradient = true
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
-bar-volume-fill = ─
+bar-volume-fill = -
 bar-volume-fill-font = 2
-bar-volume-empty = ─
+bar-volume-empty = -
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
@@ -381,7 +404,7 @@ adapter = ADP1
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+;format-charging-underline = #ffb52a
 
 format-discharging = <animation-discharging> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
@@ -413,9 +436,9 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+;format-underline = #f50a4d
+;format-warn = <ramp> <label-warn>
+;format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
@@ -468,3 +491,81 @@ margin-top = 5
 margin-bottom = 5
 
 ; vim:ft=dosini
+[module/weather]
+type = custom/script
+exec = $HOME/.config/polybar-forecast//target/release/polybar-forecast
+exec-if = ping openweathermap.org -c 1
+interval = 600
+# label-font = 9
+font-0 = Awesome Icons:size=10;2;
+#
+# # [module/weather]
+# # type = custom/script
+# # exec = busctl --user -j get-property io.ntfd /weather openweathermap.strings RenderedTemplate | jq -r .data
+# # interval = 60
+# # label-font = 5
+# #
+# # font-1 = Weather Icons:size=8
+#
+# font-3 = Material Icons:size=19
+
+# [module/weather]
+# type = custom/script
+# exec = ~/.config/weather-polybar-plugin/weather-plugin.sh
+# tail = false
+# interval = 960
+# # WEATHER_FONT_CODE=1
+# TEMP_FONT_CODE=1
+
+[module/oweatherbar]
+type = custom/script
+exec = ~/.config/polybar/oweatherbar/oweatherbar.sh
+format = <label>°C 
+foreground-color = ${color.foreground}
+interval = 1800
+
+[module/github]
+type = custom/script
+exec = busctl --user -j get-property io.ntfd /github github.strings RenderedTemplate | jq -r .data
+interval = 10
+label-font = 4
+
+
+[module/previous]
+type = custom/ipc
+format-font = 2
+; Default
+hook-0 = echo ""
+; When spotify active
+hook-1 = echo ""
+click-left = "spotifyctl -q previous"
+
+
+[module/next]
+type = custom/ipc
+format-font = 2
+; Default
+hook-0 = echo ""
+; When spotify active
+hook-1 = echo ""
+click-left = "spotifyctl -q next"
+
+
+[module/playpause]
+type = custom/ipc
+format-font = 2
+; Default
+hook-0 = echo ""
+; Playing
+hook-1 = echo ""
+; Paused
+hook-2 = echo ""
+click-left = "spotifyctl -q playpause"
+
+
+[module/spotify]
+type = custom/ipc
+; Default
+hook-0 = echo ""
+; Playing/paused show song name and artist
+hook-1 = spotifyctl -q status --format '%artist%: %title%' --max-length 40 --max-title-length 25 --max-artist-length 15 --trunc '...'
