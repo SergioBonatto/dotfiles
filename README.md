@@ -30,7 +30,7 @@ cd ~/.vim/bundle/
 - indentLine: git clone https://github.com/Yggdroot/indentLine.git  
 - syntastic: git clone --depth=1 https://github.com/vim-syntastic/syntastic.git            
 - vim-devicons: git clone https://github.com/ryanoasis/vim-devicons.git        
-- vim-kind: git clone https://github.com/samueldurantes/vim-kind.git                       
+- vim-kind: git clone https://github.com/SergioBonatto/vim-kind.git                      
 - vim-smoothie: git clone https://github.com/psliwka/vim-smoothie.git
 - matchit: git clone https://github.com/adelarsq/vim-matchit.git     
 - vim: git clone https://github.com/vim/vim.git                  
@@ -40,9 +40,11 @@ cd ~/.vim/bundle/
 - nerdcommenter: git clone https://github.com/preservim/nerdcommenter.git  
 - colorizer: git clone https://github.com/chrisbra/Colorizer.git
 - vim-unicoder: git clone https://github.com/arthurxavierx/vim-unicoder.git
-- palenight.vim: git clone https://github.com/drewtempelmeyer/palenight.vim.git 
 - vim-coloresque: git clone https://github.com/gko/vim-coloresque.git
-- vim-one: git clone https://github.com/rakr/vim-one.git
+- OpenAI Codex: git clone https://github.com/tom-doerr/vim_codex.git
+- vim-todo-highlight: git clone https://github.com/sakshamgupta05/vim-todo-highlight
+- powerline: git clone https://github.com/powerline/powerline.git
+- vim-hexokinase: git clone https://github.com/RRethy/vim-hexokinase.git
 
 ## Syntax
 - vim-kind
