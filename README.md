@@ -48,5 +48,14 @@ cd ~/.vim/bundle/
 ## Syntax
 - vim-kind
 
-## PS
-Mor images on /imgs
+## VIM with Kind2
+![vim whit kind2](./imgs/vim.png)
+
+## Kitty
+![neofetch on kitty terminal](./imgs/neofetch.png)
+
+## Firefox
+![DuckDuckGo on Firefox](./imgs/firefox.png)
+
+## Wallpaper
+![My wallpaper](./imgs/wallpaper3.png)
