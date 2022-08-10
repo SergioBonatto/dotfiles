@@ -1,5 +1,10 @@
 execute pathogen#infect()
 
+" 256 colors
+set t_Co=256
+set t_AB=^[[48;5;%dm
+set t_AF=^[[38;5;%dm
+
 " set foldmethod=expr
 " set foldexpr=GetPotionFold(v:lnum)
 " set foldminlines=0
@@ -338,7 +343,7 @@ au VimEnter * wincmd l
 nnoremap <C-a> :NERDTreeToggle<CR>
 
 " Change Color when entering Insert Mode
-"hi cursorline cterm=none ctermbg=white
+"hi cursorline cterm=none ctermbg=black
 au InsertEnter * set cursorline
 au InsertLeave * set nocursorline
 
@@ -365,8 +370,8 @@ hi link lsReservedError NONE
 
 " default the statusline to green when entering Vim
 hi StatusLine ctermfg=lightblue ctermbg=black
-hi StatusLineNC ctermfg=lightgray ctermbg=black
-hi VertSplit ctermfg=lightgray ctermbg=black
+hi StatusLineNC ctermfg=gray ctermbg=black
+hi VertSplit ctermfg=gray ctermbg=black
 
 " NERDComment
 :map ! <leader>c<space>
@@ -561,22 +566,33 @@ au BufRead,BufNewFile *.kind set filetype=kind
 au BufRead,BufNewFile *.kind2 set filetype=kind2
 au BufRead,BufNewFile *.kind2 set syntax=kind
 
-" ===== COLORSCHEME =====
-func! s:gruvbit_setup() abort
-    hi Comment gui=italic cterm=italic
-    hi Statement gui=bold cterm=bold
-    hi VertSplit guibg=NONE ctermbg=NONE
-endfunc
+" " ===== COLORSCHEME =====
+" func! s:gruvbit_setup() abort
+"     hi Comment gui=italic cterm=italic
+"     hi Statement gui=bold cterm=bold
+"     hi VertSplit guibg=NONE ctermbg=NONE
+" endfunc
+"
+" augroup colorscheme_change | au!
+"     au ColorScheme gruvbit call s:gruvbit_setup()
+" augroup END
+"
+" set termguicolors
+" colorscheme gruvbit
+"
+" let g:gruvbit_transp_bg = v:true
 
-augroup colorscheme_change | au!
-    au ColorScheme gruvbit call s:gruvbit_setup()
-augroup END
-
-set termguicolors
-colorscheme gruvbit
-
-let g:gruvbit_transp_bg = v:true
-
+" colorscheme 256_noir
+" Dark theme
+" colorscheme photon
+"
+colorscheme fogbell
+"
+" Change highlighting of cursor line when entering/leaving Insert Mode
+set cursorline
+                      highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
+autocmd InsertEnter * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=234 guifg=NONE guibg=#242426
+autocmd InsertLeave * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
 
 syntax enable
 
@@ -609,8 +625,9 @@ let g:NERDToggleCheckAllLines = 1
 let g:NERDCustomDelimiters = { 'c': { 'left':'//' }}
 let g:NERDCustomDelimiters = { 'hvm': { 'left':'//' }}
 let g:NERDCustomDelimiters = { 'HVM': { 'left':'//' }}
-let g:NERDCustomDelimiters = { 'kind': { 'left':'//' }}
 let g:NERDCustomDelimiters = { 'default': { 'left':'//' }}
+let g:NERDCustomDelimiters = { 'kind': { 'left':'//' }}
+let g:NERDCustomDelimiters = { 'kind2': { 'left':'//' }}
 
 "========= Finish NerdComments =========
 
@@ -639,6 +656,10 @@ let g:indentLine_char = '┆'
 " color
 set termguicolors
 let g:Hexokinase_highlighters = ['backgroundfull']
+" let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='minimalist'
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline_powerline_fonts = 1
 
 " finish split config ==========================
 
