@@ -1,4 +1,4 @@
-(photo)[./imgs/tela.png]
+![print](./imgs/tela.png)
 
 ## Instalation 
 
@@ -49,4 +49,4 @@ cd ~/.vim/bundle/
 - vim-kind
 
 ## PS
-Mor images on (imgs)[./imgs]
+Mor images on /imgs
