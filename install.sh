@@ -20,15 +20,16 @@ echo
 echo "Instalando configurações para Kind no Vim" && \
 echo "Curado por Sergio Bonatto" && \
 
-sleep 60
+sleep 5
 
 git clone https://github.com/vim/vim.git && \
+cd && \
 
 mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim && \
 
 
-cd ~/.vim/bundle/ && rm -rf * && \ 
+cd ~/.vim/bundle/ && \ 
 git clone https://github.com/jiangmiao/auto-pairs.git && \
 git clone https://github.com/preservim/nerdtree.git && \
 git clone https://github.com/vim-airline/vim-airline.git && \
