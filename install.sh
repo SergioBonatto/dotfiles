@@ -28,7 +28,7 @@ mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim && \
 
 
-cd ~/.vim/bundle/ && \ 
+cd ~/.vim/bundle/ && rm -rf * && \ 
 git clone https://github.com/jiangmiao/auto-pairs.git && \
 git clone https://github.com/preservim/nerdtree.git && \
 git clone https://github.com/vim-airline/vim-airline.git && \
