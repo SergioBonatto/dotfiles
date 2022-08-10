@@ -4,8 +4,10 @@
 
 Clone this repo and run the script install.sh
 
-
 ## Pathogen
+```bash
+git clone https://github.com/tpope/vim-pathogen.git
+```
 
 ## Bundle: 
 cd ~/.vim/bundle/
@@ -59,3 +61,7 @@ cd ~/.vim/bundle/
 
 ## Wallpaper
 ![My wallpaper](./imgs/wallpaper3.png)
+
+______________________________________________________________________
+# PS
+If something "der merda", change directories to their respective locations and be happy
