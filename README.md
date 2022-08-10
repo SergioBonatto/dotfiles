@@ -16,7 +16,7 @@ cd ~/.vim/bundle/
 - vim-airline: git clone https://github.com/vim-airline/vim-airline.git      
 - vim-fireplace: git clone https://github.com/tpope/vim-fireplace.git                  
 - vim-polyglot: git clone https://github.com/sheerun/vim-polyglot.git  
-- vim-wakatime: git clone git://github.com/wakatime/vim-wakatime.git
+- vim-wakatime: git clone https://github.com/wakatime/vim-wakatime.git
 - bracey.vim: git clone https://github.com/turbio/bracey.vim  
 - nerdtree-git-plugin: git clone https://github.com/Xuyuanp/nerdtree-git-plugin.git  
 - vim-airline-themes: git clone https://github.com/vim-airline/vim-airline-themes  
