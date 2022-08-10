@@ -48,7 +48,7 @@ git clone https://tpope.io/vim/sensible.git && \
 git clone https://github.com/Yggdroot/indentLine.git  && \
 git clone --depth=1 https://github.com/vim-syntastic/syntastic.git && \
 git clone https://github.com/ryanoasis/vim-devicons.git && \
-git clone https://github.com/samueldurantes/vim-kind.git && \
+git clone https://github.com/SergioBonatto/vim-kind.git && \
 git clone https://github.com/psliwka/vim-smoothie.git && \
 git clone https://github.com/adelarsq/vim-matchit.git && \
 git clone https://github.com/junegunn/vim-easy-align.git && \
@@ -57,13 +57,14 @@ git clone https://github.com/honza/vim-snippets.git && \
 git clone https://github.com/arthurxavierx/vim-unicoder.git && \
 git clone https://github.com/preservim/nerdcommenter.git && \
 git clone https://github.com/chrisbra/Colorizer.git && \
-git clone https://github.com/drewtempelmeyer/palenight.vim.git && \
 git clone https://github.com/gko/vim-coloresque.git && \
-git clone https://github.com/rakr/vim-one.git && \
+git clone https://github.com/sakshamgupta05/vim-todo-highlight && \
+git clone https://github.com/powerline/powerline.git && \
+git clone https://github.com/RRethy/vim-hexokinase.git && \
+git clone https://github.com/SergioBonatto/fogbell.vim.git && \
 
-
-clear
-
+echo
+echo
 echo "instalação finalizada"
 
 
