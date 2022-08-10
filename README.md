@@ -1,5 +1,4 @@
-# Dependency
-
+(photo)[./imgs/tela.png]
 
 ## Instalation 
 
@@ -48,3 +47,6 @@ cd ~/.vim/bundle/
 
 ## Syntax
 - vim-kind
+
+## PS
+Mor images on (imgs)[./imgs]
