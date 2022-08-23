@@ -1,4 +1,4 @@
-![print](./imgs/tela.png)
+![print](./imgs/print.png)
 
 ## Instalation 
 
@@ -60,7 +60,7 @@ cd ~/.vim/bundle/
 ![DuckDuckGo on Firefox](./imgs/firefox.png)
 
 ## Wallpaper
-![My wallpaper](./imgs/wallpaper3.png)
+![My wallpaper](./imgs/jupiter.jpg)
 
 ______________________________________________________________________
 # PS
