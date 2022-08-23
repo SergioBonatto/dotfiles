@@ -70,7 +70,7 @@ font-5 = Weather Icons:size=8;2
 modules-left =  i3 
 modules-center = sep  date sep weather backlight
 ;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
-modules-right = spotify previous playpause next  alsa memory cpu battery powermenu
+modules-right = mpd spotify previous playpause next  alsa memory cpu battery powermenu
 
 tray-position = right
 tray-padding = 2
@@ -569,3 +569,31 @@ type = custom/ipc
 hook-0 = echo ""
 ; Playing/paused show song name and artist
 hook-1 = spotifyctl -q status --format '%artist%: %title%' --max-length 40 --max-title-length 25 --max-artist-length 15 --trunc '...'
+
+[module/caffeine]
+type = custom/ipc
+hook-0 = echo   #Use a Nerd or FontAwesome icon for the off state
+hook-1 = echo   #Use a Nerd or FontAwesome icon for the on state
+click-left = /usr/local/bin/caffeine
+initial = 1
+format-foreground = ${color.background}
+format-background = ${color.alert}
+
+[module/cmus]
+type = custom/script
+
+exec = ~/.config/polybar/polybar-cmus/cmus.sh
+exec-if = pgrep -x cmus
+interval = 1
+
+click-left = cmus-remote --next
+click-right = cmus-remote --prev
+click-middle = cmus-remote --pause
+scroll-up = cmus-remote --volume +5%
+scroll-down = cmus-remote --volume -5%
+
+label-font = 3
+format = <label>
+# format-underline = ${colors.foreground-alt}
+label = %output%
+label-maxlen = 50
