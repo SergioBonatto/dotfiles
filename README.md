@@ -60,7 +60,7 @@ cd ~/.vim/bundle/
 ![DuckDuckGo on Firefox](./imgs/firefox.png)
 
 ## Wallpaper
-![My wallpaper](./imgs/jupiter.jpg)
+![My wallpaper](./imgs/wallpaper.png)
 
 ______________________________________________________________________
 # PS
