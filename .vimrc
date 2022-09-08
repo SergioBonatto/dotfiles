@@ -5,10 +5,8 @@ set t_Co=256
 set t_AB=^[[48;5;%dm
 set t_AF=^[[38;5;%dm
 
-" set foldmethod=expr
-" set foldexpr=GetPotionFold(v:lnum)
-" set foldminlines=0
-" set foldopen=mark " what movements open folds
+
+
 
 function! s:NextNonBlankLine(lnum)
     let numlines = line('$')
@@ -67,7 +65,7 @@ hi Folded ctermbg=231 ctermfg=2
 hi FoldColumn ctermbg=white ctermfg=darkred
 
 set ruler
-"set colorcolumn=80
+" set colorcolumn=90
 set ttyfast
 set ttyscroll=3
 set lazyredraw
@@ -75,7 +73,7 @@ set hidden
 " set nowrap
 set autoread
 set wrap nolist linebreak 
-"set nosmartindent                        " TODO: remove this line if things go wrong
+" set nosmartindent                        " TODO: remove this line if things go wrong
 set nolisp                               " stops annoying auto-indenting on .scm file
 set tabstop=2                            " a tab is four spaces
 set expandtab                            "
@@ -100,7 +98,7 @@ set noswapfile
 set nocompatible
 set viminfo='1000,f1,<500,:100,/100,h  "
 set shortmess=atql " no annoying start screen
-" set linebreak
+set linebreak
 set wrap linebreak
 set showbreak=↪
 set nolist  " list disables linebreak
@@ -113,8 +111,6 @@ set cryptmethod=blowfish2
 "let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 let g:ctrlp_by_filename = 0
 :map <expr> <space> ":CtrlP ".getcwd()."<cr>"
-":set wildignore+=*/tmp/*,*/node_modules/*,*/migrations*,*.min.*,*.so,*.swp,*.zip,*.pyc,*.hi,*.o,*.dyn_hi,*.dyn_o,*.jsexe/*,*/dist/*,*/bin/*,*.js_hi,*.js_o,*.agdai,*/.git/*,*/elm-stuff/*,*/sprites/* " MacOSX/Linux
-
 :noremap j gj
 :noremap k gk
 
@@ -459,10 +455,14 @@ au BufNewFile,BufRead *.eac set filetype=eac
 au BufNewFile,BufRead *.eac set syntax=javascript
 au BufNewFile,BufRead *.fmc set filetype=formcore
 au BufNewFile,BufRead *.fmc set syntax=javascript
+au BufNewFile,BufRead *.html set syntax=html
 au BufNewFile,BufRead *.kind2 set filetype=kind2
 au BufNewFile,BufRead *.kind2 set syntax=kind
 au BufNewFile,BufRead *.type set filetype=type
 au BufNewFile,BufRead *.type set syntax=javascript
+au BufNewFile,BufRead *.js set syntax=javascript
+au BufNewFile,BufRead *.js set filetype=javascript
+au BufNewFile,BufRead *.jsx set syntax=javascript
 au BufNewFile,BufRead *.kind set filetype=kind
 au BufNewFile,BufRead *.kind set syntax=kind
 au BufNewFile,BufRead *.kindelia set filetype=kindelia
@@ -499,10 +499,95 @@ au BufNewFile,BufRead *.pwd :nmap <leader>g :<C-U>echo "NOT ALLOWED, THIS IS A P
 filetype plugin on
 
 
+"=============== Agda ===============
+au BufNewFile,BufRead *.agda setf agda 
+" let g:agda_extraincpaths = ["/home/derek/haskell/agda-stdlib-0.8.1/src"]
+let g:agdavim_enable_goto_definition = 0
+" C-c C-l -> \l
+nnoremap <buffer> <LocalLeader>l :AgdaReload<CR>
+
+
+command! -buffer -nargs=0 AgdaLoad call AgdaLoad(v:false)
+command! -buffer -nargs=0 AgdaVersion call AgdaVersion(v:false)
+command! -buffer -nargs=0 AgdaReload silent! make!|redraw!
+command! -buffer -nargs=0 AgdaRestartAgda exec s:python_cmd 'AgdaRestart()'
+command! -buffer -nargs=0 AgdaShowImplicitArguments exec s:python_cmd "sendCommand('ShowImplicitArgs True')"
+command! -buffer -nargs=0 AgdaHideImplicitArguments exec s:python_cmd "sendCommand('ShowImplicitArgs False')"
+command! -buffer -nargs=0 AgdaToggleImplicitArguments exec s:python_cmd "sendCommand('ToggleImplicitArgs')"
+command! -buffer -nargs=0 AgdaConstraints exec s:python_cmd "sendCommand('Cmd_constraints')"
+command! -buffer -nargs=0 AgdaMetas exec s:python_cmd "sendCommand('Cmd_metas')"
+command! -buffer -nargs=0 AgdaSolveAll exec s:python_cmd "sendCommand('Cmd_solveAll')"
+command! -buffer -nargs=1 AgdaShowModule call AgdaShowModule(<args>)
+command! -buffer -nargs=1 AgdaWhyInScope call AgdaWhyInScope(<args>)
+command! -buffer -nargs=1 AgdaSetRewriteMode exec s:python_cmd "setRewriteMode('<args>')"
+command! -buffer -nargs=0 AgdaSetRewriteModeAsIs exec s:python_cmd "setRewriteMode('AsIs')"
+command! -buffer -nargs=0 AgdaSetRewriteModeNormalised exec s:python_cmd "setRewriteMode('Normalised')"
+command! -buffer -nargs=0 AgdaSetRewriteModeSimplified exec s:python_cmd "setRewriteMode('Simplified')"
+command! -buffer -nargs=0 AgdaSetRewriteModeHeadNormal exec s:python_cmd "setRewriteMode('HeadNormal')"
+command! -buffer -nargs=0 AgdaSetRewriteModeInstantiated exec s:python_cmd "setRewriteMode('Instantiated')"
+
+" C-c C-l -> \l
+nnoremap <buffer> <LocalLeader>l :AgdaReload<CR>
+
+" C-c C-d -> \t
+nnoremap <buffer> <LocalLeader>t :call AgdaInfer()<CR>
+
+" C-c C-r -> \r
+nnoremap <buffer> <LocalLeader>r :call AgdaRefine("False")<CR>
+nnoremap <buffer> <LocalLeader>R :call AgdaRefine("True")<CR>
+
+" C-c C-space -> \g
+nnoremap <buffer> <LocalLeader>g :call AgdaGive()<CR>
+
+" C-c C-g -> \c
+nnoremap <buffer> <LocalLeader>c :call AgdaMakeCase()<CR>
+
+" C-c C-a -> \a
+nnoremap <buffer> <LocalLeader>a :call AgdaAuto()<CR>
+
+" C-c C-, -> \e
+nnoremap <buffer> <LocalLeader>e :call AgdaContext()<CR>
+
+" C-u C-c C-n -> \n
+nnoremap <buffer> <LocalLeader>n :call AgdaNormalize("IgnoreAbstract")<CR>
+
+" C-c C-n -> \N
+nnoremap <buffer> <LocalLeader>N :call AgdaNormalize("DefaultCompute")<CR>
+nnoremap <buffer> <LocalLeader>M :call AgdaShowModule('')<CR>
+
+" C-c C-w -> \y
+nnoremap <buffer> <LocalLeader>y :call AgdaWhyInScope('')<CR>
+nnoremap <buffer> <LocalLeader>h :call AgdaHelperFunction()<CR>
+
+" M-. -> \d
+nnoremap <buffer> <LocalLeader>d :call AgdaGotoAnnotation()<CR>
+
+" C-c C-? -> \m
+nnoremap <buffer> <LocalLeader>m :AgdaMetas<CR>
+
+" Show/reload metas
+" C-c C-? -> C-e
+nnoremap <buffer> <C-e> :AgdaMetas<CR>
+inoremap <buffer> <C-e> <C-o>:AgdaMetas<CR>
+
+" Go to next/previous meta
+" C-c C-f -> C-g
+nnoremap <buffer> <silent> <C-g>  :let _s=@/<CR>/ {!\\| ?<CR>:let @/=_s<CR>2l
+inoremap <buffer> <silent> <C-g>  <C-o>:let _s=@/<CR><C-o>/ {!\\| ?<CR><C-o>:let @/=_s<CR><C-o>2l
+
+" C-c C-b -> C-y
+nnoremap <buffer> <silent> <C-y>  2h:let _s=@/<CR>? {!\\| \?<CR>:let @/=_s<CR>2l
+inoremap <buffer> <silent> <C-y>  <C-o>2h<C-o>:let _s=@/<CR><C-o>? {!\\| \?<CR><C-o>:let @/=_s<CR><C-o>2l
+
+
+
 " Scheme
 au BufNewFile,BufRead *.scm set nolisp
 au BufRead,BufNewFile *.kind set filetype=kind
 au BufRead,BufNewFile *.kind2 set filetype=kind2
+au BufNewFile,BufRead *.html set syntax=html
+autocmd BufWinEnter *.agda noremap <silent> <buffer> <leader>l :call agda#load()<cr>
+
 
 "filetype on
 "filetype plugin indent on
@@ -519,7 +604,7 @@ au BufRead,BufNewFile *.kind2 set filetype=kind2
 :nnoremap <leader>a zC
 
 
-let g:rainbow_active = 1
+" let g:rainbow_active = 1
 
 " relative lines on/off
 "nnoremap <silent><leader>n :set relativenumber!<cr>
@@ -546,10 +631,7 @@ function! s:CloseIfOnlyNerdTreeLeft()
   endif
 endfunction
 
-
-
 " ===== CLONE NERDTREE ====
-
 function! s:CloseIfOnlyNerdTreeLeft()
   if exists("t:NERDTreeBufName")
     if bufwinnr(t:NERDTreeBufName) != -1
@@ -564,30 +646,25 @@ endfunction
 au BufRead,BufNewFile *.kind set filetype=kind
 
 au BufRead,BufNewFile *.kind2 set filetype=kind2
-au BufRead,BufNewFile *.kind2 set syntax=kind
+au BufRead,BufNewFile *.kind2 set syntax=rust
+
+" highlight default link
+
+let g:rust_clip_command = 'xclip -selection clipboard'
+
 
 " " ===== COLORSCHEME =====
-" func! s:gruvbit_setup() abort
-"     hi Comment gui=italic cterm=italic
-"     hi Statement gui=bold cterm=bold
-"     hi VertSplit guibg=NONE ctermbg=NONE
-" endfunc
-"
-" augroup colorscheme_change | au!
-"     au ColorScheme gruvbit call s:gruvbit_setup()
-" augroup END
-"
-" set termguicolors
-" colorscheme gruvbit
-"
-" let g:gruvbit_transp_bg = v:true
+colorscheme gruvbox
+set background=dark
+let g:everblushNR=1 " default
+colorscheme everblush
+syntax on
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+" ------- theme GRUVBOX CONFIG ---------
 
-" colorscheme 256_noir
-" Dark theme
-" colorscheme photon
-"
-colorscheme fogbell
-"
+
 " Change highlighting of cursor line when entering/leaving Insert Mode
 set cursorline
                       highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
@@ -595,33 +672,26 @@ autocmd InsertEnter * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=234 g
 autocmd InsertLeave * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
 
 syntax enable
+filetype plugin indent on
 
 
 " ========== NERDCOMMENTS  ==========
 "
 " Create default mappings
 let g:NERDCreateDefaultMappings = 1
-
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
-
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
-
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
-
 " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
-
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
-
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
-
 " Add your own custom formats or override the defaults
-
 let g:NERDCustomDelimiters = { 'c': { 'left':'//' }}
 let g:NERDCustomDelimiters = { 'hvm': { 'left':'//' }}
 let g:NERDCustomDelimiters = { 'HVM': { 'left':'//' }}
@@ -631,27 +701,11 @@ let g:NERDCustomDelimiters = { 'kind2': { 'left':'//' }}
 
 "========= Finish NerdComments =========
 
-
-" always split windows vertically
-set splitright
-set diffopt+=vertical
-silent! set splitvertical
-if v:errmsg != ''
-  cabbrev split vert split
-  cabbrev hsplit split
-  cabbrev help vert help
-  noremap <C-w>] :vert botright wincmd ]<CR>
-  noremap <C-w><C-]> :vert botright wincmd ]<CR>
-else
-  cabbrev hsplit hor split
-endif
-
 " indent line
 let g:indentLine_setColors = 1
 let g:indentLine_concealcursor = 'inc'
 let g:indentLine_conceallevel = 2
 let g:indentLine_char = '┆'
-
 
 " color
 set termguicolors
@@ -660,9 +714,6 @@ let g:Hexokinase_highlighters = ['backgroundfull']
 let g:airline_theme='minimalist'
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline_powerline_fonts = 1
-
-" finish split config ==========================
-
 
 " Vim DevIcons  ==========================
 let g:webdevicons_enable = 1
@@ -676,7 +727,6 @@ let g:webdevicons_enable_startify = 1
 let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = 'λ'
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
-
 
 " call current line as a terminal command, paste below
 map <leader>, 0y$:r!<C-r>"<CR>
@@ -701,28 +751,6 @@ endif
 
 set runtimepath^=~/.vim/bundle/ag
 
-
-
-
-
-
-
-
-" purescript
-":map <leader>mt :PSCIDEtype<CR>
-":map <leader>mi :PSCIDEimportIdentifier<CR>
-":map <leader>mat :PSCIDEaddTypeAnnotation<CR>
-":map <leader>mai :PSCIDEaddImportQualifications<CR>
-":map <leader>mri :PSCIDEremoveImportQualifications<CR>
-":map <leader>ms :PSCIDEapplySuggestion<CR>
-":map <leader>mc :PSCIDEcaseSplit<CR>
-":map <leader>mp :PSCIDEpursuit<CR>
-":map <leader>mr :PSCIDEload<CR>
-":map <leader>mf :PSCIDEaddClause<CR>
-
-
-" https://gist.github.com/bignimbus/1da46a18416da4119778
-" Set the title of the Terminal to the currently open file
 function! SetTerminalTitle()
     let titleString = expand('%:t')
     if len(titleString) > 0
@@ -763,13 +791,33 @@ augroup Binary
   au BufWritePost *.bin set nomod | endif
 augroup END
 
+" always split windows vertically
+set splitright
+set diffopt+=vertical
+silent! set splitvertical
+if v:errmsg != ''
+  cabbrev split vert split
+  cabbrev hsplit split
+  cabbrev help vert help
+  noremap <C-w>] :vert botright wincmd ]<CR>
+  noremap <C-w><C-]> :vert botright wincmd ]<CR>
+else
+  cabbrev hsplit hor split
+endif
 
-" agda
-let maplocalleader = "\\"
-let g:agda_extraincpaths = ["/Users/v/vic/dev/agda"]
+let g:netrw_altv=1
+" finish split config ==========================
 
-" let g:Powerline_theme='short'
-" let g:Powerline_colorscheme='solarized16_dark'
+" Vim syntax dor javascript
+let g:javascript_plugin_jsdoc = 1
 
+
+" Markdown preview
+let vim_markdown_preview_github=1
+let vim_markdown_preview_toggle=2
+let vim_markdown_preview_browser='Google Chrome'
+
+
+set clipboard=unnamedplus
 set guifont=Hack\ 14
 autocmd VimEnter * NERDTree | wincmd p
