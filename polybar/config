@@ -63,7 +63,7 @@ font-5 = Weather Icons:size=8;2
 
 modules-left =  i3 
 modules-center = sep  date sep weather backlight
-;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
+;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powerguido
 modules-right = mpd spotify previous playpause next  alsa memory cpu battery powermenu
 
 tray-position = right
@@ -591,3 +591,28 @@ format = <label>
 # format-underline = ${colors.foreground-alt}
 label = %output%
 label-maxlen = 50
+
+
+;; Application Launcher Module
+[module/launcher]
+type = custom/text
+
+content = 異
+content-background = black
+content-foreground = green
+
+click-left = ~/.config/rofi/launchers/type-1/launcher.sh
+click-right = launcher_t1
+
+;; Power Menu Module
+[module/powerguido]
+type = custom/text
+
+content = 襤
+content-background = black
+content-foreground = red
+
+click-left = ~/.config/rofi/powermenu/type-1/powermenu.sh
+click-right = powermenu_t1
+
+
