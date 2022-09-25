@@ -1,6 +1,6 @@
 execute pathogen#infect()
 
-" 256 colors
+"256 colors
 set t_Co=256
 set t_AB=^[[48;5;%dm
 set t_AF=^[[38;5;%dm
@@ -654,14 +654,28 @@ let g:rust_clip_command = 'xclip -selection clipboard'
 
 
 " " ===== COLORSCHEME =====
-colorscheme gruvbox
-set background=dark
-let g:everblushNR=1 " default
-colorscheme everblush
+"colorscheme gruvbox-material
+" set background=dark
+" let g:everblushNR=1 " default
+" colorscheme everblush
+" Important!!
+" For dark version.
+" set background=dark
+" Set contrast.
+" This configuration option should be placed before `colorscheme gruvbox-material`.
+" Available values: 'hard', 'medium'(default), 'soft'
+" let g:gruvbox_material_background = 'soft'
+" For better performance
+" let g:gruvbox_material_better_performance = 1
+" colorscheme gruvbox-material
+" let g:gruvbox_material_enable_bold = 1
+" let g:gruvbox_material_enable_italic = 1
+colorscheme catppuccin_mocha
+set noshowmode
 syntax on
-  if (has("termguicolors"))
-    set termguicolors
-  endif
+  " if (has("termguicolors"))
+  "   set termguicolors
+  " endif
 " ------- theme GRUVBOX CONFIG ---------
 
 
@@ -702,18 +716,22 @@ let g:NERDCustomDelimiters = { 'kind2': { 'left':'//' }}
 "========= Finish NerdComments =========
 
 " indent line
-let g:indentLine_setColors = 1
+let g:indentLine_setColors = 0
 let g:indentLine_concealcursor = 'inc'
 let g:indentLine_conceallevel = 2
-let g:indentLine_char = '┆'
+let g:indentLine_char = "¦"
 
-" color
+"color
 set termguicolors
 let g:Hexokinase_highlighters = ['backgroundfull']
 " let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='minimalist'
+let g:airline_theme='deus'
+" let g:airline_theme = 'gruvbox_material'
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline_powerline_fonts = 1
+
+
+
 
 " Vim DevIcons  ==========================
 let g:webdevicons_enable = 1
@@ -819,5 +837,8 @@ let vim_markdown_preview_browser='Google Chrome'
 
 
 set clipboard=unnamedplus
-set guifont=Hack\ 14
+" set guifont=Hack\ 14
+set guifont=ource\ Code\ Pro\ 11
+
+
 autocmd VimEnter * NERDTree | wincmd p

@@ -7,6 +7,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # vim dark noir 256
 export MC_SKIN=dark
 
+# catpuccin 
+source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -124,7 +127,7 @@ alias up="sudo pacman -Syyu && yay -Syyu"
 alias matrix="cmatrix -b -C black"
 alias meufetch="~/.scripts/meufetch.sh"
 alias media="cd /media/Arquivos/"
-alias ck="cd ~/Documentos/kind/class2/Wikind && vim"
+alias ck="cd ~/Programação/Wikind && ls"
 alias :q="exit"
 alias musica="mpd && ncmpcpp"
 alias vi="vim"
