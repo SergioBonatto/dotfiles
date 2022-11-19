@@ -1,12 +1,11 @@
+set encoding=UTF-8
+
 execute pathogen#infect()
 
 "256 colors
-set t_Co=256
-set t_AB=^[[48;5;%dm
-set t_AF=^[[38;5;%dm
-
-
-
+" set t_Co=256
+" set t_AB=^[[48;5;%dm
+" set t_AF=^[[38;5;%dm
 
 function! s:NextNonBlankLine(lnum)
     let numlines = line('$')
@@ -19,7 +18,6 @@ function! s:NextNonBlankLine(lnum)
     endwhile
     return -2
 endfunction
-
 function! s:IndentLevel(lnum)
     if &ft == 'chaos'
         if (a:lnum == 1)
@@ -31,7 +29,6 @@ function! s:IndentLevel(lnum)
         return indent(a:lnum) / &shiftwidth + (getline(a:lnum)=~?'^\s*}' ? 1 : 0)
     endif
 endfunction
-
 function! GetPotionFold(lnum)
     if getline(a:lnum) =~? '\v^\s*$'
         return '-1'
@@ -47,7 +44,6 @@ function! GetPotionFold(lnum)
         return '>' . next_indent
     endif
 endfunction
-
 function! NeatFoldText()
     let line = getline(v:foldstart)
     let lines_count = v:foldend - v:foldstart + 1
@@ -64,15 +60,16 @@ set foldtext=NeatFoldText()
 hi Folded ctermbg=231 ctermfg=2
 hi FoldColumn ctermbg=white ctermfg=darkred
 
+set mouse=a
 set ruler
 " set colorcolumn=90
 set ttyfast
 set ttyscroll=3
 set lazyredraw
 set hidden
-" set nowrap
+set nowrap
 set autoread
-set wrap nolist linebreak 
+" set wrap nolist linebreak
 " set nosmartindent                        " TODO: remove this line if things go wrong
 set nolisp                               " stops annoying auto-indenting on .scm file
 set tabstop=2                            " a tab is four spaces
@@ -98,12 +95,12 @@ set noswapfile
 set nocompatible
 set viminfo='1000,f1,<500,:100,/100,h  "
 set shortmess=atql " no annoying start screen
-set linebreak
-set wrap linebreak
-set showbreak=↪
+" set linebreak
+" set wrap linebreak
+" set showbreak=↪
 set nolist  " list disables linebreak
-set textwidth=80
-set wrapmargin=0
+" set textwidth=80
+" set wrapmargin=0
 set cryptmethod=blowfish2
 
 " CtrlP stuff
@@ -271,22 +268,7 @@ let g:ctrlp_by_filename = 0
     \ &ft=='lambda'     ? ':!time absal -s %<cr>' :
     \ &ft=='javascript' ? ':!npm run build<cr>' :
     \ &ft=='typescript' ? ':!npm run build<cr>' :
-    \ &ft=='html'       ? ':!npm run build<cr>' :
-    \ &ft=='eatt'       ? ':!time eatt %:r<cr>' :
-    \ &ft=='formality'  ? ':!time fmio %:r<cr>' :
-    \ &ft=='formcore'   ? ':!time fmcrun main<cr>' :
-    \ &ft=='kind'       ? ':!node /Users/v/vic/dev/Kind/web/build.js %:r<cr>' :
-    \ &ft=='eac'        ? ':!time eac %:r<cr>' :
-    \ &ft=='moon'       ? ':!time moon run %:r<cr>' :
-    \ &ft=='sic'        ? ':!time sic -s -B %<cr>' :
-    \ &ft=='morte'      ? ':!time echo $(cat %) \| morte<cr>' :
-    \ &ft=='swift'      ? ':!time swift %<cr>' :
-    \ &ft=='solidity'   ? ':!truffle deploy<cr>' :
-    \ &ft=='idris2'     ? ':!idris2 % -o %:r<cr>:!time ./%:r<cr>' :
-    \ &ft=='c'          ? ':!clang -O3 % -o %:r<cr>:!time ./%:r<cr>' :
-    \ &ft=='cuda'       ? ':!rm %:r; nvcc -O3 % -o %:r<cr>:!time ./%:r<cr>' :
-    \ &ft=='cpp'        ? ':!clang++ -O3 % -o %:r<cr>:!time ./%:r<cr>' :
-    \ &ft=='agda'       ? ':!agda -i src %<cr>' :
+    \ &ft=='html'       ? ':!npm run build<cr>' : \ &ft=='eatt'       ? ':!time eatt %:r<cr>' : \ &ft=='formality'  ? ':!time fmio %:r<cr>' : \ &ft=='formcore'   ? ':!time fmcrun main<cr>' : \ &ft=='kind'       ? ':!node /Users/v/vic/dev/Kind/web/build.js %:r<cr>' : \ &ft=='eac'        ? ':!time eac %:r<cr>' : \ &ft=='moon'       ? ':!time moon run %:r<cr>' : \ &ft=='sic'        ? ':!time sic -s -B %<cr>' : \ &ft=='morte'      ? ':!time echo $(cat %) \| morte<cr>' : \ &ft=='swift'      ? ':!time swift %<cr>' : \ &ft=='solidity'   ? ':!truffle deploy<cr>' : \ &ft=='idris2'     ? ':!idris2 % -o %:r<cr>:!time ./%:r<cr>' : \ &ft=='c'          ? ':!clang -O3 % -o %:r<cr>:!time ./%:r<cr>' : \ &ft=='cuda'       ? ':!rm %:r; nvcc -O3 % -o %:r<cr>:!time ./%:r<cr>' : \ &ft=='cpp'        ? ':!clang++ -O3 % -o %:r<cr>:!time ./%:r<cr>' : \ &ft=='agda'       ? ':!agda -i src %<cr>' :
     \ &ft=='ls'         ? ':!lsc -c %<cr>:!node %:r.js<cr>' :
     \ &ft=='lispell'    ? ':!node ~/Viclib/lispedia/bin/lis.js reduce %:r<cr>' :
     \ ':!time cc %<cr>')
@@ -356,7 +338,7 @@ hi link lsReservedError NONE
 :syntax on
 
 " cursor always in middle of screen
-:set scrolloff=99999 " vertically keep cursor on the middle of the screen
+:set scrolloff=999 " vertically keep cursor on the middle of the screen
 :set sidescrolloff=0 " only scroll horizontally when out of bounds
 
 :map , <leader>
@@ -647,43 +629,47 @@ au BufRead,BufNewFile *.kind set filetype=kind
 
 au BufRead,BufNewFile *.kind2 set filetype=kind2
 au BufRead,BufNewFile *.kind2 set syntax=rust
+au BufNewFile,BufRead *.hvm set syntax=javascript
 
 " highlight default link
 
 let g:rust_clip_command = 'xclip -selection clipboard'
 
 
-" " ===== COLORSCHEME =====
-"colorscheme gruvbox-material
+"  ===== COLORSCHEME =====
+" colorscheme gruvbox
+" set term=xterm-256color
+"set term=screen-256color
+if has('termguicolors')
+    set termguicolors
+endif
+
+set background=dark
+let g:gruvbox_material_background = 'soft'
+let g:gruvbox_material_better_performance = 1
+colorscheme gruvbox-material
+" let g:lightline.colorscheme = 'gruvbox_material'
+" let g:airline_theme = 'gruvbox_material'
+let g:gruvbox_material_enable_bold = 1
+let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_disable_terminal_colors = 1
+let g:gruvbox_material_better_performance = 1
+
+" colorscheme synthwave84
+" set termguicolors
 " set background=dark
-" let g:everblushNR=1 " default
-" colorscheme everblush
-" Important!!
-" For dark version.
-" set background=dark
-" Set contrast.
-" This configuration option should be placed before `colorscheme gruvbox-material`.
-" Available values: 'hard', 'medium'(default), 'soft'
-" let g:gruvbox_material_background = 'soft'
-" For better performance
-" let g:gruvbox_material_better_performance = 1
-" colorscheme gruvbox-material
-" let g:gruvbox_material_enable_bold = 1
-" let g:gruvbox_material_enable_italic = 1
-colorscheme catppuccin_mocha
-set noshowmode
-syntax on
-  " if (has("termguicolors"))
-  "   set termguicolors
-  " endif
+" let g:gruvbox_italic = 1
+" let g:gruvbox_underline = 1
+" let g:gruvbox_improved_strings = 1
+" let g:gruvbox_italicize_strings = 1
 " ------- theme GRUVBOX CONFIG ---------
 
 
 " Change highlighting of cursor line when entering/leaving Insert Mode
 set cursorline
-                      highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
-autocmd InsertEnter * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=234 guifg=NONE guibg=#242426
-autocmd InsertLeave * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
+                      " highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
+" autocmd InsertEnter * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=234 guifg=NONE guibg=#242426
+" autocmd InsertLeave * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
 
 syntax enable
 filetype plugin indent on
@@ -716,20 +702,21 @@ let g:NERDCustomDelimiters = { 'kind2': { 'left':'//' }}
 "========= Finish NerdComments =========
 
 " indent line
-let g:indentLine_setColors = 0
+let g:indentLine_setColors = 1
 let g:indentLine_concealcursor = 'inc'
 let g:indentLine_conceallevel = 2
 let g:indentLine_char = "¦"
 
 "color
-set termguicolors
-let g:Hexokinase_highlighters = ['backgroundfull']
+" set termguicolors
+" let g:Hexokinase_highlighters = ['backgroundfull']
 " let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='deus'
-" let g:airline_theme = 'gruvbox_material'
+" let g:airline_theme='deus'
+" ================== mudei aqui =====================
+let g:airline_theme = 'gruvbox_material'
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline_powerline_fonts = 1
-
+" ===================================================
 
 
 
@@ -746,6 +733,8 @@ let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = 'λ'
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 
+
+" let g:WebDevIconsOS = 'Darwin'
 " call current line as a terminal command, paste below
 map <leader>, 0y$:r!<C-r>"<CR>
 
@@ -833,12 +822,14 @@ let g:javascript_plugin_jsdoc = 1
 " Markdown preview
 let vim_markdown_preview_github=1
 let vim_markdown_preview_toggle=2
-let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_browser='Firefox'
 
-
-set clipboard=unnamedplus
+set clipboard=unnamed
+" set clipboard=unnamedplus
 " set guifont=Hack\ 14
-set guifont=ource\ Code\ Pro\ 11
-
-
+" set guifont=Noto\ 11
+" set guifont=DroidSansMono_Nerd_Font:h11
+" set guifont=Source\ Code\ Pro\ 13
+" highlight Comment cterm=italic
 autocmd VimEnter * NERDTree | wincmd p
+let &t_ut=''
