@@ -1,15 +1,8 @@
-agda-vim             sparkup               vim-instant-markdown
-bracey.vim           syntastic             vim-javascript
-colorizer            vim-agda              vim-kind
-Colorizer            vim-airline           vim-markdown-preview
-emmet-vim            vim-airline-themes    vim-matchit
-everblush.vim        vim_codex             vim-nerdtree-syntax-highlight
-indentLine           vim-coloresque        vim-polyglot
-molokai              vim-colors-xcode      vim-rust-syntax-ext
-nerdcommenter        vim-commentary        vim-smoothie
-nerdtree             vim-devicons          vim-snippets
-nerdtree-git-plugin  vim-easy-align        vim-todo-highlight
-openai.vim           vim-fireplace         vim-unicoder
-plastic.vim          vim-fugitive          vim-wakatime
-powerline            vim-github-dashboard
-sensible             vim-hexokinase
+auto-pairs   gruvbox-material     syntastic           vim-fireplace                   vim-rust-syntax-ext
+bracey.vim   indentLine           ultisnips           vim-fugitive                   vim-smoothie
+Colorizer    nerdcommenter        vim-airline         vim-github-dashboard           vim-snippets
+emmet-vim    nerdtree             vim-airline-themes  vim-hexokinase                 vim-todo-highlight
+fogbell.vim  nerdtree-git-plugin  vim-coloresque      vim-kind                       vim-unicoder
+fzf          powerline            vim-commentary      vim-matchit                    vim-wakatime
+fzf.vim      sensible             vim-devicons        vim-nerdtree-syntax-highlight
+gruvbox      sparkup              vim-easy-align      vim-polyglot
