@@ -1,16 +1,15 @@
-################################################
-#                                              #
-#   Arch Linux GUI i3 WM Configuration File.   #
-#   Make a habit to read this file. You will   #
-#   find keybindings and various other         #
-#   settings here. Please see                  #
-#                                              #
-#       https://i3wm.org/docs/userguide.html   #
-#                                              #
-#   for a complete reference on moving forward #
-#   from what I have provided here.            #
-#                                              #
-################################################
+### Terminal começando no login
+exec --no-startup-id kitty
+exec --no-startup-id blueman
+exec --no-startup-id flameshot
+# exec --no-startup-id nm-applet
+exec --no-startup-id dunst
+exec --no-startup-id ntfd
+exec --no-startup-id simplescreenrecorder
+
+
+### gerenciador de conexões
+exec wicd-gtk -t
 
 #### i3-gaps ##############
 for_window [class=".*"] border pixel 1 
@@ -21,9 +20,9 @@ gaps horizontal 2
 ################# i3-radius #######################
 smart_borders on
 smart_borders no_gaps
-# border_radius 7
+border_radius 7
 set $thick 16
-border_radius 4
+# border_radius 4
 
 # DEFAULT BORDER
 for_window [class="^.*"] border pixel 1
@@ -40,10 +39,9 @@ gaps outer $outer
 
 for_window [class="dolphin"] focus child, layout stacked, focus
 for_window [class="dolphin"] resize 800 600
+for_window [class="league of legends"] fullscreen enable
 
-
-client.focused          #0e0e0e #0e0e0e #ffffff #dadadb   #0e0e0e
-
+client.focused          #32302f #32302f #32302f #83a598   #32302f
 
 # This is our mod Key. Currently it is set to the Windows Key.
 # You can uncomment the line below to set 'Alt' key as the mod key.
@@ -54,7 +52,7 @@ set $mod Mod4
 font pango:monospace 15
 
 # start a terminal. We use kitty.
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
 # bindsym $mod+Shift+q killp
@@ -62,7 +60,7 @@ bindsym $mod+q kill
 
 
 ## Minecraft
-bindsym $mod+m exec /media/Arquivos/Minecraft_Linux/Minecraft_1.19/start.sh
+bindsym $mod+m exec ~/Público/Jogos/Minecraft_1.19.1/start.sh
 
 ## Whatsapp
 bindsym $mod+w exec whatsapp-nativefier
@@ -71,7 +69,7 @@ bindsym $mod+w exec whatsapp-nativefier
 bindsym $mod+c exec discord
 
 ## Dolphin
-bindsym $mod+e exec dolphin
+bindsym $mod+e exec nautilus
 
 # Google
 bindsym $mod+g exec gimp
@@ -93,11 +91,11 @@ bindsym F8 exec caffeine
 
 # set floating by default
 # for_window [class="[.]*"] resize set 940 680
-for_window [class="[.]*"] floating enable
+#for_window [class="[.]*"] floating enable
 
 # Floating window size
 floating_minimum_size 700 x 440
-floating_maximum_size 920 x 680
+# floating_maximum_size 920 x 680
 
 # Orientation for new workspace
 default_orientation auto
@@ -111,7 +109,7 @@ new_float 1pixel
 hide_edge_borders vertical
 
 # start dmenu (a program launcher).
-bindsym $mod+n exec --no-startup-id menu_network
+# bindsym $mod+n exec --no-startup-id menu_network
 bindsym $mod+p exec --no-startup-id ~/.config/rofi/bin/menu_powermenu
 
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run
@@ -121,8 +119,8 @@ bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 # This is the recommended mode. It searches for the programs as
 # defined in .desktop file, with their description, and corresponding
 # icons
-# bindsym $mod+d exec --no-startup-id rofi -show drun
-bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-3/launcher.sh
+ bindsym $mod+d exec --no-startup-id rofi -show drun
+#bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-3/launcher.sh
 #-theme custom-nord # -icon-theme "Tela-circle" -show-icons
 
 # The other mode search for applications in /usr/bin or /usr/sbin.
@@ -132,12 +130,14 @@ bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-3/launcher.sh
 # Launch Polybar. Take a look at ~/.confi/polybar/config to
 # configure the bar.
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-# bash ~/.config/polybar/launch.sh --hack
+#
+#
+#
 # Display Wallpaper, always.
 exec_always --no-startup-id killall back4.sh
 #exec_always --no-startup-id $HOME/back4.sh 0.03 Downloads/cityange.gif
 
-exec_always --no-startup-id feh --bg-fill /usr/share/backgrounds/i3/wallpaper.png
+exec_always --no-startup-id feh --bg-fill  ~/Imagens/Wallpapers/wallpaper-black.png
 # exec_always --no-startup-id feh --bg-fill /usr/share/backgrounds/i3/wallpaper3.png
 # exec_always --no-startup-id feh --bg-fill /usr/share/backgrounds/i3/jupiter.jpg
 # BLUR SCRIPT
@@ -164,7 +164,6 @@ bindsym $mod+Shift+s exec shutdown now
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
-
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 
@@ -175,7 +174,11 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 # We use this. System dark theme is applied to it.
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
+# exec --no-startup-id networkmanager
+               exec --no-startup-id nm-applet --sm-disable
+
+bindsym $mod+n exec --no-startup-id nm-applet
 
 #Volume Control in ALG i3
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
@@ -183,8 +186,14 @@ bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
 
 ##Brightness Control in ALG i3
-bindsym XF86MonBrightnessUp exec sudo xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec sudo xbacklight -dec 10
+# bindsym XF86MonBrightnessUp exec sudo xbacklight -inc 10
+# bindsym XF86MonBrightnessDown exec sudo xbacklight -dec 10
+
+bindsym XF86MonBrightnessUp exec --no-startup-id "brightnessctl -q s +5%"
+bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl -q s 5%-"
+
+# bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+# bindsym XF86MonBrighnessDown exec xbacklight -dec 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -294,7 +303,7 @@ for_window [class="firefox"] move to workspace $ws2
 bindsym $mod+f workspace 2; exec firefox
 
 # Printscreen
-bindsym Print exec --no-startup-id xfce4-screenshooter
+bindsym Print exec --no-startup-id flameshot
 
 #Multi Monitor (Dual Monitor, extended monitor)
 #Replace HDMI2 with DVI-2, VGA-2, DP-2, DVI-2 etc. Get value by typing xrandr in the terminal.
@@ -303,6 +312,8 @@ bindsym Print exec --no-startup-id xfce4-screenshooter
 #HDMI-X is display used in Desktop connected to monitor with HDMI Cable.
 #VGA-X is display used in Desktop connected to monitor with VGA Cable.
 exec --no-startup-id xrandr --output HDMI-2 --right-of HDMI-1 --auto
+
+exec --no-startup-id nm-applet
 
 # bar {
 #   position top
@@ -326,6 +337,23 @@ exec --no-startup-id xrandr --output HDMI-2 --right-of HDMI-1 --auto
 #
 #   status_command ~/.config/i3/bumblebee-status/bumblebee-status \
 #     -m datetime spotify weather amixer -a cpu -a memory -a battery -m system \
-#     -p root.path=/  datetime.format="%d %b %Y, %a %H:%M" memory.format="{percent:05.02f}%"  \
+#    -p root.path=/  datetime.format="%d %b %Y, %a %H:%M" memory.format="{percent:05.02f}%"  \
 #     -t gruvbox-powerline
 #   }
+#
+  # bar {
+         # tray_output primary
+         # status_command i3status
+# }
+#
+# bar {
+#  status_command exec ~/.config/i3status/mybar.sh
+#   # status_command i3blocks
+# # status_command i3status
+# # mode hide
+# position top
+# output primary
+# # tray_output none
+# font pango:Awesome 10
+# # separator_symbol “⁞”
+# }
