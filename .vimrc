@@ -628,7 +628,7 @@ endfunction
 au BufRead,BufNewFile *.kind set filetype=kind
 
 au BufRead,BufNewFile *.kind2 set filetype=kind2
-au BufRead,BufNewFile *.kind2 set syntax=rust
+au BufRead,BufNewFile *.kind2 set syntax=kind
 au BufNewFile,BufRead *.hvm set syntax=javascript
 
 " highlight default link
@@ -640,20 +640,24 @@ let g:rust_clip_command = 'xclip -selection clipboard'
 " colorscheme gruvbox
 " set term=xterm-256color
 "set term=screen-256color
-if has('termguicolors')
+" if has('termguicolors')
     set termguicolors
-endif
+" endif
 
 set background=dark
 let g:gruvbox_material_background = 'soft'
+let g:gruvbox_material_foreground = "material"
 let g:gruvbox_material_better_performance = 1
 colorscheme gruvbox-material
-" let g:lightline.colorscheme = 'gruvbox_material'
-" let g:airline_theme = 'gruvbox_material'
+let g:lightline = 'gruvbox_material'
+let g:airline_theme = 'gruvbox_material'
 let g:gruvbox_material_enable_bold = 1
 let g:gruvbox_material_enable_italic = 1
 let g:gruvbox_material_disable_terminal_colors = 1
 let g:gruvbox_material_better_performance = 1
+
+" let g:gruvbox_material_sign_column_background = "grey"
+" let g:gruvbox_material_spell_foreground = "colored"
 
 " colorscheme synthwave84
 " set termguicolors
@@ -662,6 +666,56 @@ let g:gruvbox_material_better_performance = 1
 " let g:gruvbox_underline = 1
 " let g:gruvbox_improved_strings = 1
 " let g:gruvbox_italicize_strings = 1
+"
+"
+"
+" colorscheme material
+
+" colorscheme pop-punk
+" colorscheme eldar
+
+" pop-punk ANSI colors for vim terminal
+" let g:terminal_ansi_colors = pop_punk#AnsiColors()
+
+" for the airline theme - note the underscore instead of the hyphen
+" let g:airline_theme = 'pop_punk'
+
+" just for fun
+" let g:airline_section_c = '🎸 %F'
+
+" for lightline theme - this needs underscore too
+" let g:lightline.colorscheme = 'pop_punk'
+
+
+" let g:equinusocio_material_style = 'pure'
+" let g:equinusocio_material_less = 50
+" let g:equinusocio_material_hide_vertsplit = 1
+" let g:equinusocio_material_bracket_improved = 1
+" colorscheme equinusocio_material
+" let g:airline_theme = 'equinusocio_material'
+" let g:airline_theme = 'jellybeans'
+" let g:airline_theme = 'transparent'
+
+" set background=dark
+" colorscheme toast
+" colorscheme boogiewoogie
+" colorscheme gruvbox
+" colorscheme aurora
+" let g:gruvbox_italic = 1
+" let g:gruvbox_contrast_dark = 'soft'
+" let g:gruvbox_italicize_strings = 1
+
+set t_Co=256
+
+
+"
+" if (has('termguicolors'))
+  " set termguicolors
+" endif
+" let g:material_theme_style = 'darker'
+" let g:material_terminal_italics = 1
+" let g:airline_theme = 'material'
+
 " ------- theme GRUVBOX CONFIG ---------
 
 
@@ -713,8 +767,8 @@ let g:indentLine_char = "¦"
 " let g:airline#extensions#tabline#enabled = 1
 " let g:airline_theme='deus'
 " ================== mudei aqui =====================
-let g:airline_theme = 'gruvbox_material'
-let g:airline#extensions#tabline#formatter = 'default'
+" let g:airline_theme = 'gruvbox_material'
+" let g:airline#extensions#tabline#formatter = 'default'
 let g:airline_powerline_fonts = 1
 " ===================================================
 
@@ -823,6 +877,8 @@ let g:javascript_plugin_jsdoc = 1
 let vim_markdown_preview_github=1
 let vim_markdown_preview_toggle=2
 let vim_markdown_preview_browser='Firefox'
+
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 
 set clipboard=unnamed
 " set clipboard=unnamedplus

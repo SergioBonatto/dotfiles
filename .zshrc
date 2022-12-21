@@ -1,26 +1,25 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# vim dark noir 256
-export MC_SKIN=dark
-
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="cdimascio-lambda"
-
-# Blur {{{
-# if [[ $(ps --no-header -p $PPID -o comm) =~ '^yakuake|kitty$' ]]; then
-#         for wid in $(xdotool search --pid $PPID); do
-#             xprop -f _KDE_NET_WM_BLUR_BEHIND_REGION 32c -set _KDE_NET_WM_BLUR_BEHIND_REGION 0 -id $wid; done
-# fi
-# }}}
-
+ZSH_THEME="lambda-theme/cdimascio-lambda"
+# ZSH_THEME="powerlevel9k/powerlevel9k"
+# POWERLEVEL9K_MODE="nerdfont-complete"
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -72,7 +71,7 @@ ZSH_THEME="cdimascio-lambda"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-HIST_STAMPS="dd/mm/yyyy"
+# HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -83,8 +82,8 @@ HIST_STAMPS="dd/mm/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	git
-	zsh-syntax-highlighting
+  git
+  zsh-syntax-highlighting
 	zsh-autosuggestions
 	catimg
 	copybuffer
@@ -101,7 +100,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-# source /Users/fibonatto/.iterm2_shell_integration.zsh
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -127,37 +126,30 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# alias class="cd ~/Documentos/class/Kind/Exercises"
+#
+alias class="cd ~/Público/class/Kind/Exercises"
 alias gs="git status"
 alias cl="clear"
+alias r="ranger"
+alias byebye="sudo shutdown now"
+alias inte="sudo shutdown -r now"
+alias up="sudo pacman -Syyu && paru"
+alias matrix="cmatrix -b -C black"
 alias meufetch="~/.scripts/meufetch.sh"
 alias media="cd /media/Arquivos/"
-alias ck="cd ~/Wikind && ls"
-alias cj="cd ~/curso-js && ls"
+alias ck="cd ~/Público/Wikind && ls"
+alias cb="cd ~/Público/learning && ls"
 alias :q="exit"
+alias musica="mpd && ncmpcpp"
 alias vi="vim"
-alias beta="cd ~/Beta-reduction-animation/ && ls "
-alias class="cd ~/learning && ls"
-alias cobra="starfetch -n ophiuchus"
-alias clache="sudo pacman -Rns $(pacman -Qtdq)"
+alias ct="cd ~/Público/testes && ls"
 
-# Codi bloco de nota para hackers
-# Usage: codi [filetype] [filename]
-codi() {
-  local syntax="${1:-python}"
-  shift
-  vim -c \
-    "let g:startify_disable_at_vimenter = 1 |\
-    set bt=nofile ls=0 noru nonu nornu |\
-    hi ColorColumn ctermbg=NONE |\
-    hi VertSplit ctermbg=NONE |\
-    hi NonText ctermfg=0 |\
-    Codi $syntax" "$@"
-}
-# fim do codi
-export PATH=/home/fibonatto/.cargo/bin:$PATH
-# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-ZSH_THEME="cdimascio-lambda"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#
+#
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+# source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
