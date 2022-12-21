@@ -18,22 +18,22 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #002c231c
-background-alt = #444
+background = #32302f
+background-alt = #101010
 ;foreground = ${xrdb:color7:#222}
-foreground = #797D80  
-foreground-alt = #C7CDD1
+foreground-alt = #d4be98 
+foreground = #a89984
 primary = #C7CDD1
-secondary = #616466
+secondary = #ea6962
 alert = #ffffff
 
 [bar/alg-example]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 14
+height = 16
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 6.0
+;radius = 6.0
 fixed-center = true
 
 enable-ipc = true
@@ -44,8 +44,8 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 4
-border-color = #00000000
+border-size = 3
+border-color = #32302f
 
 padding-left = 0
 padding-right = 2
@@ -54,32 +54,32 @@ module-margin-left = 1
 module-margin-right = 2
 
 
-font-0 = FiraCode Nerd Font Mono:style=Medium:size=10;2
-font-1 = FiraCode Nerd Font Mono:style=Medium:size=15;3
-font-2 = siji:pixelsize=9;2
+font-0 = FiraCode Nerd Font Mono:style=Medium:size=10;3
+font-1 = FiraCode Nerd Font Mono:style=Medium:size=12;3
+font-2 = siji:pixelsize=9;3
 font-3 = FiraCode Nerd Font Mono:style=Medium:size=30;5
-font-4 = Iconsolata Font:style=Medium:size=8;2
-font-5 = Weather Icons:size=8;2
+font-4 = Iconsolata Font:style=Medium:size=8;3
+font-5 = Weather Icons:size=8;4
+font-6 = Material Icons:size=14;6
 
 modules-left =  i3 
-modules-center = sep  date sep weather backlight
-;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powerguido
-modules-right = mpd spotify previous playpause next  alsa memory cpu battery powermenu
-
+modules-center = weather date 
+# modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powerguido
+modules-right = spotify previous playpause next alsa memory cpu battery wlan powermenu
 tray-position = right
-tray-padding = 2
+tray-padding = 7
 ;tray-background = #0063ff
 
 ;wm-restack = bspwm
-;wm-restack = i3
+wm-restack = i3
 
 ;override-redirect = true
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
 
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
+# scroll-up = i3wm-wsnext
+# scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -149,7 +149,7 @@ label-mode-padding = 2
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
- focused = Active workspace on focused monitor
+focused = Active workspace on focused monitor
 label-focused = %index%
 # label-focused-background = ${colors.background-alt}
 # label-focused-underline= ${colors.primary}
@@ -277,13 +277,14 @@ label = %percentage_used%%
 type = internal/network
 interface = wlp2s0
 interval = 3.0
+label-connected = %{A1:nm-connection-editor:}%essid%%{A}
 
 format-connected = <ramp-signal> <label-connected>
 ;format-connected-underline = #9f78e1
-label-connected = %essid%
+# label-connected = %essid%
 
-format-disconnected =
-;format-disconnected = <label-disconnected>
+# format-disconnected =
+format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
@@ -311,21 +312,29 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
+# [module/date]
+# type = internal/date
+# interval = 5
+#
+# date =
+# date-alt = " %d-%m-%Y"
+#
+# time = %H:%M
+# time-alt = %H:%M:%S
+#
+# format-prefix = 
+# format-prefix-foreground = ${colors.foreground-alt}
+# ;format-underline = #0a6cf5
+#
+# label = %date% %time%
+
+
 [module/date]
 type = internal/date
 interval = 5
-
-date =
-date-alt = " %d-%m-%Y"
-
-time = %H:%M
-time-alt = %H:%M:%S
-
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-;format-underline = #0a6cf5
-
-label = %date% %time%
+time      = %H:%M
+time-alt  = %A, %d %B %Y
+label = %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -374,13 +383,22 @@ format-muted-foreground = ${colors.foreground-alt}
 label-muted = sound muted
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #3A3C3D
-bar-volume-foreground-1 = #444647
-bar-volume-foreground-2 = #616466
-bar-volume-foreground-3 = #83878A
-bar-volume-foreground-4 = #94989C
-bar-volume-foreground-5 = #AAAFB3
-bar-volume-foreground-6 = #ffffff
+bar-volume-foreground-0 = #32302f 
+bar-volume-foreground-1 = #94856A
+bar-volume-foreground-2 = #a89984
+bar-volume-foreground-3 = #BAA786
+bar-volume-foreground-4 = #D4BE98
+bar-volume-foreground-5 = #E0C9A2
+bar-volume-foreground-6 = #F7DEB2
+
+
+ramp-volume-0 = 奄
+ramp-volume-1 = 奄
+ramp-volume-2 = 奔
+ramp-volume-3 = 奔
+ramp-volume-4 = 奔
+ramp-volume-5 = 墳
+ramp-volume-padding = 1
 
 bar-volume-gradient = true
 bar-volume-indicator = |
@@ -392,6 +410,52 @@ bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
+
+# type = internal/battery
+#
+# full-at = 99
+# battery = BAT0
+# adapter = AC
+#
+# poll-interval = 2
+# time-format = %H:%M
+#
+# format-charging            = <animation-charging><label-charging>
+# label-charging             = %percentage%%  
+# label-charging-padding     = 1
+#
+# format-discharging            = <ramp-capacity><label-discharging>
+# label-discharging             = ${self.label-charging}
+# label-discharging-padding     = ${self.label-charging-padding}
+#
+# format-full        = <ramp-capacity><label-full>
+# label-full         = ${self.label-charging}
+# label-full-padding = ${self.label-charging-padding}
+#
+# ramp-capacity-0 = 
+# ramp-capacity-1 = 
+# ramp-capacity-2 = 
+# ramp-capacity-3 = 
+# ramp-capacity-4 = 
+# ramp-capacity-5 = 
+# ramp-capacity-6 = 
+# ramp-capacity-7 = 
+# ramp-capacity-8 = 
+# ramp-capacity-9 = 
+# ramp-capacity-0-foreground = ${colors.alert}
+#
+# animation-charging-0 = 
+# animation-charging-1 = 
+# animation-charging-2 = 
+# animation-charging-3 = 
+# animation-charging-4 = 
+# animation-charging-5 = 
+# animation-charging-6 = 
+# animation-charging-padding = 1
+#
+# animation-charging-framerate = 750
+#
+#
 type = internal/battery
 battery = BAT0
 adapter = ADP1
@@ -453,7 +517,7 @@ format-spacing = 1
 label-open = 
 label-open-foreground = ${colors.secondary}
 label-close =  cancel
-label-close-foreground = ${colors.secondary}
+label-close-foreground = ${colors.primary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
 
@@ -485,13 +549,13 @@ margin-top = 5
 margin-bottom = 5
 
 ; vim:ft=dosini
-[module/weather]
-type = custom/script
-exec = $HOME/.config/polybar-forecast//target/release/polybar-forecast
-exec-if = ping openweathermap.org -c 1
-interval = 600
+# [module/weather]
+# type = custom/script
+# exec = $HOME/.config/polybar-forecast//target/release/polybar-forecast
+# exec-if = ping openweathermap.org -c 1
+# interval = 600
 # label-font = 9
-font-0 = Awesome Icons:size=10;2;
+# font-0 = Awesome Icons:size=10;2;
 #
 # # [module/weather]
 # # type = custom/script
@@ -511,18 +575,37 @@ font-0 = Awesome Icons:size=10;2;
 # # WEATHER_FONT_CODE=1
 # TEMP_FONT_CODE=1
 
-[module/oweatherbar]
+[module/weather]
+# type = custom/script
+# exec = $HOME/.config/polybar/weather-polybar-plugin/weather-plugin.sh
+# tail = false
+# interval = 960
+#
+# [module/weather]
 type = custom/script
-exec = ~/.config/polybar/oweatherbar/oweatherbar.sh
-format = <label>°C 
-foreground-color = ${color.foreground}
-interval = 1800
+exec = busctl --user -j get-property io.ntfd /weather openweathermap.strings RenderedTemplate | jq -r .data
+interval = 60
+label-font = 0
+
 
 [module/github]
 type = custom/script
 exec = busctl --user -j get-property io.ntfd /github github.strings RenderedTemplate | jq -r .data
 interval = 10
-label-font = 4
+label-font = 0
+
+# [module/oweatherbar]
+# type = custom/script
+# exec = ~/.config/polybar/oweatherbar/oweatherbar.sh
+# format = <label>°C
+# foreground-color = ${color.foreground}
+# interval = 1800
+
+# [module/github]
+# type = custom/script
+# exec = busctl --user -j get-property io.ntfd /github github.strings RenderedTemplate | jq -r .data
+# interval = 10
+# label-font = 4
 
 
 [module/previous]
