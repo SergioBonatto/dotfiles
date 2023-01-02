@@ -1,4 +1,4 @@
-![print](./imgs/tela.png)
+![print](./imgs/i3wm.png)
 
 ## Instalation 
 
