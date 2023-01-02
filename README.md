@@ -1,4 +1,4 @@
-![print](./imgs/print.png)
+![print](./imgs/tela.png)
 
 ## Instalation 
 
@@ -56,11 +56,8 @@ cd ~/.vim/bundle/
 ## Kitty
 ![neofetch on kitty terminal](./imgs/neofetch.png)
 
-## Firefox
-![DuckDuckGo on Firefox](./imgs/firefox.png)
-
 ## Wallpaper
-![My wallpaper](./imgs/wallpaper.png)
+![My wallpaper](./imgs/wallpaper-black.png)
 
 ______________________________________________________________________
 # PS
