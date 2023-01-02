@@ -1,11 +1,11 @@
 ### Terminal começando no login
-exec --no-startup-id kitty
+exec --no-startup-id kitty htop
 exec --no-startup-id blueman
 exec --no-startup-id flameshot
-# exec --no-startup-id nm-applet
+exec --no-startup-id kdeconnect-indicator
 exec --no-startup-id dunst
 exec --no-startup-id ntfd
-exec --no-startup-id simplescreenrecorder
+# exec --no-startup-id simplescreenrecorder
 
 
 ### gerenciador de conexões
@@ -90,11 +90,11 @@ bindsym F1 exec amixer set "Headphone" unmute
 bindsym F8 exec caffeine
 
 # set floating by default
-# for_window [class="[.]*"] resize set 940 680
-#for_window [class="[.]*"] floating enable
+for_window [class="net.lugsole.bible_gui"] resize set 280 680
+for_window [class="net.lugsole.bible_gui"] floating enable
 
 # Floating window size
-floating_minimum_size 700 x 440
+# floating_minimum_size 700 x 440
 # floating_maximum_size 920 x 680
 
 # Orientation for new workspace
@@ -189,8 +189,8 @@ bindsym XF86AudioMute exec amixer -q set Master toggle
 # bindsym XF86MonBrightnessUp exec sudo xbacklight -inc 10
 # bindsym XF86MonBrightnessDown exec sudo xbacklight -dec 10
 
-bindsym XF86MonBrightnessUp exec --no-startup-id "brightnessctl -q s +5%"
-bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl -q s 5%-"
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q s +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -q s 5%-
 
 # bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 # bindsym XF86MonBrighnessDown exec xbacklight -dec 10
@@ -303,7 +303,7 @@ for_window [class="firefox"] move to workspace $ws2
 bindsym $mod+f workspace 2; exec firefox
 
 # Printscreen
-bindsym Print exec --no-startup-id flameshot
+bindsym Print exec --no-startup-id xfce4-screenshooter  
 
 #Multi Monitor (Dual Monitor, extended monitor)
 #Replace HDMI2 with DVI-2, VGA-2, DP-2, DVI-2 etc. Get value by typing xrandr in the terminal.
@@ -314,46 +314,3 @@ bindsym Print exec --no-startup-id flameshot
 exec --no-startup-id xrandr --output HDMI-2 --right-of HDMI-1 --auto
 
 exec --no-startup-id nm-applet
-
-# bar {
-#   position top
-#   workspace_buttons yes
-#   font pango: Inconsolata for Powerline 10
-#   tray_output none
-#
-#   i3bar_command i3bar -t
-#   colors{
-#       statusline #ffc88a
-#       # background #000000
-#       background  #00000000
-#
-#       active_workspace 		#ca480e #ca480e #ffc88a
-#       inactive_workspace 	#00262423 #00262423 #ffc88a
-#       focused_workspace   #00262423 #00262423 #f8f4cd
-#
-#     }
-#
-#   # i3bar_command i3bar  --transparency
-#
-#   status_command ~/.config/i3/bumblebee-status/bumblebee-status \
-#     -m datetime spotify weather amixer -a cpu -a memory -a battery -m system \
-#    -p root.path=/  datetime.format="%d %b %Y, %a %H:%M" memory.format="{percent:05.02f}%"  \
-#     -t gruvbox-powerline
-#   }
-#
-  # bar {
-         # tray_output primary
-         # status_command i3status
-# }
-#
-# bar {
-#  status_command exec ~/.config/i3status/mybar.sh
-#   # status_command i3blocks
-# # status_command i3status
-# # mode hide
-# position top
-# output primary
-# # tray_output none
-# font pango:Awesome 10
-# # separator_symbol “⁞”
-# }
