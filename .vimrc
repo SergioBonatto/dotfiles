@@ -146,7 +146,7 @@ let g:ctrlp_by_filename = 0
     \ &ft=='type'       ? ':!time kind2 derive %<cr>' :
     \ &ft=='kindelia'   ? ':!time kindelia run %<cr>' :
     \ &ft=='lambolt'    ? ':!time hvm % ts<cr>' :
-    \ &ft=='hvm'        ? ':!time hvm run % 2<cr>' :
+    \ &ft=='hvm'        ? ':!time hvm run -c -f % <cr>' :
     \ &ft=='sic'        ? ':!time sic -s %<cr>' :
     \ &ft=='morte'      ? ':!time echo $(cat %) \| morte<cr>' :
     \ &ft=='swift'      ? ':!time swift %<cr>' :
